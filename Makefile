@@ -2,7 +2,7 @@ PLUGIN_NAME = sunnywalden/logging-plugin-tee
 PLUGIN_TAG ?= latest
 TMP_CONTAINER_NAME := tmp-$(shell echo $$$$)
 
-all: clean build install
+all: clean build install push
 
 clean:
 	rm -rf ./plugin

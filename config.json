@@ -3,7 +3,7 @@
   "documentation": "https://github.com/buzztaiki/docker-logging-plugin-tee",
   "entrypoint": ["/usr/bin/docker-logging-plugin-tee"],
   "network": {
-    "type": "host"
+    "type": "bridge"
   },
   "interface": {
     "types": ["docker.logdriver/1.0"],
