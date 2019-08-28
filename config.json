@@ -1,5 +1,5 @@
 {
-  "description": "A docker logging plugin that send logs to multiple log drivers",
+  "description": "Docker日志插件同时输出STDOUT内容到syslog及jsonfile",
   "documentation": "https://github.com/buzztaiki/docker-logging-plugin-tee",
   "entrypoint": ["/usr/bin/docker-logging-plugin-tee"],
   "network": {
