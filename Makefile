@@ -1,8 +1,8 @@
 PLUGIN_NAME = sunnywalden/logging-plugin-tee
-PLUGIN_TAG ?= development
+PLUGIN_TAG ?= latest
 TMP_CONTAINER_NAME := tmp-$(shell echo $$$$)
 
-all: clean install
+all: clean build install
 
 clean:
 	rm -rf ./plugin
@@ -10,8 +10,7 @@ clean:
 build:
 	go get .
 	CGO_ENABLED=0 go build .
-
-rootfs: build
+#rootfs: build
 	docker build -q -t $(PLUGIN_NAME):rootfs .
 	mkdir -p ./plugin/rootfs
 	docker create --name $(TMP_CONTAINER_NAME) $(PLUGIN_NAME):rootfs
@@ -20,7 +19,8 @@ rootfs: build
 	docker rm -vf $(TMP_CONTAINER_NAME)
 	docker rmi $(PLUGIN_NAME):rootfs
 
-install: rootfs
+#install: rootfs
+install: build
 	docker plugin rm -f $(PLUGIN_NAME):$(PLUGIN_TAG) || true
 	docker plugin create $(PLUGIN_NAME):$(PLUGIN_TAG) ./plugin
 	docker plugin enable $(PLUGIN_NAME):$(PLUGIN_TAG)
